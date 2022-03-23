@@ -1,0 +1,13 @@
+node_modules
+*.js
+!babel.config.js
+!jest.config.js
+*.d.ts
+
+# CDK asset staging directory
+aws/.cdk.staging
+aws/cdk.out
+./data/**
+./data
+./dist
+dist

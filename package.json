@@ -2,25 +2,30 @@
   "name": "crud-cdk",
   "version": "0.1.0",
   "bin": {
-    "crud-cdk": "bin/crud-cdk.js"
+    "crud-cdk": "aws/bin/crud-cdk.js"
   },
   "scripts": {
-    "build": "tsc",
+    "up": "npm run build && docker-compose build --pull && docker-compose up -d",
+    "build": "rimraf dist && tsc",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",
-    "@types/node": "10.17.27",
-    "jest": "^26.4.2",
-    "ts-jest": "^26.2.0",
+    "@types/node": "^10.17.27",
+    "@types/source-map-support": "^0.5.4",
     "aws-cdk": "2.15.0",
+    "esbuild": "^0.14.25",
+    "jest": "^26.4.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.2.0",
     "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
     "aws-cdk-lib": "2.15.0",
+    "aws-sdk": "^2.1088.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
   }

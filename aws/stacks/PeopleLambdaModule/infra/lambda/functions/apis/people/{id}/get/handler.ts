@@ -1,5 +1,4 @@
 import { DynamoDB } from 'aws-sdk';
-import { adaptAPIGatewayProxyEventV2Route } from '../../../../../../../../../../src/infra/adapters/aws-apigateway-proxy-event-route-adapter';
 const ddbClient = new DynamoDB.DocumentClient();
 
 const tableName = 'People';

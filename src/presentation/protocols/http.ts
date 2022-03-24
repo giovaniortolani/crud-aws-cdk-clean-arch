@@ -1,3 +1,10 @@
-export type HttpRequest = {};
+export type HttpRequest = {
+  pathParameters: any;
+  queryParameters?: any;
+  body?: any;
+};
 
-export type HttpResponse = {};
+export type HttpResponse = {
+  statusCode: number;
+  body?: any;
+};

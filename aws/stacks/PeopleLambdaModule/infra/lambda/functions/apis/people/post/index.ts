@@ -4,7 +4,6 @@ import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Table } from 'aws-cdk-lib/aws-dynamodb';
 import * as path from 'path';
 import { ParameterTier, ParameterType, StringParameter } from 'aws-cdk-lib/aws-ssm';
-import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 
 export function makeCreatePersonLambda(app: Construct) {
@@ -24,7 +23,7 @@ export function makeCreatePersonLambda(app: Construct) {
     timeout: Duration.seconds(15),
   });
 
-  peopleTable.grantWriteData(resource);
+  peopleTable.grantReadWriteData(resource);
 
   new StringParameter(app, 'modules.people.lambda.api.people.post', {
     parameterName: 'modules.people.lambda.api.people.post',

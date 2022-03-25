@@ -26,6 +26,8 @@ export class DeletePersonController implements Controller {
       await this.deletePerson.execute(id);
       return noContent();
     } catch (exception) {
+      console.info('httpRequest', httpRequest);
+      console.error('DeletePersonController', exception);
       return serverError(exception);
     }
   }

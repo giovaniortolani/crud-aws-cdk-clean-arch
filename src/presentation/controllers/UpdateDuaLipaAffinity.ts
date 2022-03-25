@@ -27,6 +27,7 @@ export class UpdateDuaLipaAffinityController implements Controller {
       await this.updateDuaLipaAffinity.execute({ id, likesDuaLipa });
       return noContent();
     } catch (exception) {
+      console.info('httpRequest', httpRequest);
       console.error('UpdateDuaLipaAffinityController', exception);
       return serverError(exception);
     }

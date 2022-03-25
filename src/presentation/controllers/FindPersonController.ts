@@ -24,6 +24,8 @@ export class FindPersonController implements Controller {
 
       return ok(people);
     } catch (exception) {
+      console.info('httpRequest', httpRequest);
+      console.error('FindPersonController', exception);
       return serverError(exception);
     }
   }

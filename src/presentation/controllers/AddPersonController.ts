@@ -27,8 +27,10 @@ export class AddPersonController implements Controller {
       const person: Person = { id, name, age, likesDuaLipa };
       await this.addPerson.execute(person);
       return created(person);
-    } catch (error) {
-      return serverError(error);
+    } catch (exception) {
+      console.info('httpRequests', httpRequest);
+      console.error('AddPersonController', exception);
+      return serverError(exception);
     }
   }
 }

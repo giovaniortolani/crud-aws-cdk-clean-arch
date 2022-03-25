@@ -15,6 +15,8 @@ export class RetrieveAllPeopleController implements Controller {
 
       return ok(people);
     } catch (exception) {
+      console.info('httpRequest', httpRequest);
+      console.error('RetrieveAllPeopleController', exception);
       return serverError(exception);
     }
   }

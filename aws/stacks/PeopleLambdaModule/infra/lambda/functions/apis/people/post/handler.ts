@@ -1,5 +1,5 @@
 import { adaptAPIGatewayProxyEventV2Route } from '../../../../../../../../../src/main/adapters/aws-api-gateway-proxy-event-v2-adapter';
-import { makeAddPersonController } from '../../../../../../../../../src/main/factories/controllers/make-create-person-controller-factory';
+import { makeAddPersonController } from '../../../../../../../../../src/main/factories/controllers/make-add-person-controller-factory';
 
 const controller = makeAddPersonController();
 

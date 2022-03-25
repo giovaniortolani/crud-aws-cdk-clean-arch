@@ -1,39 +1,9 @@
-import { DynamoDB } from 'aws-sdk';
-const ddbClient = new DynamoDB.DocumentClient();
+import { adaptAPIGatewayProxyEventV2Route } from '../../../../../../../../../src/main/adapters/aws-api-gateway-proxy-event-v2-adapter';
+import { makeRetrieveAllPeopleController } from '../../../../../../../../../src/main/factories/controllers/make-retrieve-all-people-controller-factory';
 
-const tableName = 'People';
+const controller = makeRetrieveAllPeopleController();
 
-exports.handler = async (event) => {
-  try {
-    const people = await getPeople();
-
-    if (!people.length) {
-      return { statusCode: 204 };
-    }
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(people),
-    };
-  } catch (exception) {
-    console.error(exception);
-
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Internal Server Error' }),
-    };
-  }
-};
-
-const getPeople = async (exclusiveStartKey = undefined) => {
-  // Com paginação
-  // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination
-  const { Items: items, LastEvaluatedKey: lastEvaluatedKey } = await ddbClient
-    .scan({ TableName: tableName, ExclusiveStartKey: exclusiveStartKey })
-    .promise();
-  if (lastEvaluatedKey) {
-    items.push(...(await getPeople(lastEvaluatedKey)));
-  }
-
-  return items;
+export const handler = async (event) => {
+  const httpResponse = adaptAPIGatewayProxyEventV2Route(event, controller);
+  return httpResponse;
 };

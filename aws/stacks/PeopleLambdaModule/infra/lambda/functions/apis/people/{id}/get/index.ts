@@ -21,8 +21,9 @@ export function makeGetPersonLambda(app: Construct) {
     functionName: 'Dev-CrudChallenge-API-getPerson',
     entry: path.join(__dirname, 'handler.ts'),
     runtime: Runtime.NODEJS_14_X,
-    logRetention: RetentionDays.SIX_MONTHS,
     timeout: Duration.seconds(15),
+    logRetention: RetentionDays.FIVE_DAYS,
+    description: `Generated on: ${new Date().toISOString()}`,
   });
 
   peopleTable.grantReadData(resource);

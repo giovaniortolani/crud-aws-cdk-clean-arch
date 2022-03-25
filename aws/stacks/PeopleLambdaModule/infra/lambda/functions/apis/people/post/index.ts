@@ -5,6 +5,7 @@ import { Table } from 'aws-cdk-lib/aws-dynamodb';
 import * as path from 'path';
 import { ParameterTier, ParameterType, StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { Construct } from 'constructs';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 
 export function makeCreatePersonLambda(app: Construct) {
   const peopleTable = Table.fromTableAttributes(app, 'PeopleTableImportedFromCreatePersonLambda', {
@@ -21,6 +22,8 @@ export function makeCreatePersonLambda(app: Construct) {
     entry: path.join(__dirname, 'handler.ts'),
     runtime: Runtime.NODEJS_14_X,
     timeout: Duration.seconds(15),
+    logRetention: RetentionDays.FIVE_DAYS,
+    description: `Generated on: ${new Date().toISOString()}`,
   });
 
   peopleTable.grantReadWriteData(resource);
